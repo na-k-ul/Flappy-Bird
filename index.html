@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="canvas1" class="hide"></canvas>
-    <h1 id="end" class="hide">Try Again</h1>
-    <h1 id="begin"><button onclick="startGame()">Start or press space bar</button></h1>
-    <img src="./Star Bug Game Asset Sprites/png/skeleton-animation_00.png" id='ima' class="hide">
-    <img src="./Star Bug Game Asset Sprites/background.jpg" id='image-back' class="hide">
+    <h2 id="texts">Hit Spacebar to Jump</h2>
+    <h3 id="best-score"></h3>
+    <canvas id="canvas1"><h1 id="begin"></canvas>
+    <img src="./assets/background.jpg" id='image-back' class="hide">
+    <img src="./assets/bird-fly.png" id='image-bird-up' class="hide">
+    <img src="./assets/bird-jump.png" id='image-bird-down' class="hide">
+    <img src="./assets/dead-bird.png" id="image-bird-dead" class="hide">
+    <img src="./assets/gameover.png" id="image-gameover" class="hide">
     <script src="./game.js"></script>
 </body>
 </html>
