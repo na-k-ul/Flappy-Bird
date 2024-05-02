@@ -9,20 +9,14 @@ var bestscore = 0;
 var obssize = [];
 var obsloc = [];
 
-function animate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    game.render();
-    requestAnimationFrame(animate);
-}
-
 function lostwords(){
-    document.getElementById('texts').innerHTML = "You Lost. Press R to restart. Your score: " + score;
+    document.getElementById('texts').innerHTML = "You Lost. Press <span id='restart' name='restart'>R</span> to restart. Your score: " + score;
     bestscore = Math.max(score, bestscore);
     document.getElementById('best-score').innerHTML = "Best Score: " + bestscore;
 }
 
 function startwords(){
-    document.getElementById('texts').innerHTML = "Hit Spacebar to Jump";
+    document.getElementById('texts').innerHTML = "Hit Spacebar or Click to Jump ";
     document.getElementById('best-score').innerHTML = "Best Score: " + bestscore;
 }
 
@@ -197,6 +191,20 @@ window.addEventListener('keydown', function(e){
     }
 });
 
+window.addEventListener('mousedown', function(e){
+    if(e.toElement.id === 'restart'){
+        game.player.y = 200;
+        start = false;
+        game.player.speedY = game.gravity;
+        game.z = 1;
+        game.y = 1;
+        obssize = [];
+        obsloc = [];
+        score = 0;
+        startwords();
+    }
+});
+
 window.addEventListener('keydown', function(e){
     if(e.code === 'Space'){
         if(start === false){
@@ -209,11 +217,31 @@ window.addEventListener('keydown', function(e){
     }
 });
 
+window.addEventListener('mousedown', function(e){
+    //console.log(e.toElement.id);
+    if(start === false){
+        start = true;
+        game.player.jump = true;
+    }
+    else{
+        game.player.jump = true;
+    }
+});
+
+window.addEventListener('mouseup', function(e){
+    game.player.jump = false;
+});
+
 window.addEventListener('keyup', function(e){
     if(e.code === 'Space')
         game.player.jump = false;
 });
 
+function animate(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    game.render();
+    requestAnimationFrame(animate);
+}
 
 const game = new Game(canvas, ctx);
-animate();  
+requestAnimationFrame(animate);  

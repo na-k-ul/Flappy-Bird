@@ -14,3 +14,6 @@ body{
     margin-top: 5px;
     border: solid 5px;
 }
+#restart{
+    color: red;
+}
